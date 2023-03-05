@@ -15,10 +15,12 @@ links.forEach( function(link){
     getGames(category)
   })
 })
+
 document.querySelector('.logout-btn').addEventListener('click' , ()=>{
   localStorage.removeItem('uToken')
   location.href = './index.html'
 })
+
 
 // ! =============> Functions ===============>
 
@@ -35,7 +37,7 @@ async function getGames(category){
   const api = await fetch(`https://free-to-play-games-database.p.rapidapi.com/api/games?category=${category}`, options)
 
   const res = await api.json()
-  console.log(res);
+  // console.log(res);
 
   displayGames(res)
   $('#loading').addClass('d-none')
@@ -100,7 +102,7 @@ function playVideo(index){
   const video = $(`figure .video${index}`)[0]
   video.play()
   video.classList.remove('d-none')
-  // console.log(video);
+   // console.log(video)
 
 }
 
@@ -115,4 +117,18 @@ function pauseVideo(index){
 
 function showDetails(id){
   location.href = `./details.html?id=${id}`
+}
+
+
+// ?================ DarkMode=======================
+
+document.getElementById('mode').addEventListener('click' , ()=>{
+  changeTheme()
+})
+function changeTheme(){
+  if (document.documentElement.getAttribute('data-theme') == 'dark') {
+    document.documentElement.setAttribute('data-theme' , 'light')
+  }else{
+    document.documentElement.setAttribute('data-theme' , 'dark')
+  }
 }
